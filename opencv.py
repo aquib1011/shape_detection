@@ -1,7 +1,7 @@
-import cv2
+import cv2 
 import numpy as np
 
-
+#This function is used to stack image in a single image.
 def stackImages(scale, imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])
@@ -36,7 +36,7 @@ def stackImages(scale, imgArray):
         ver = hor
     return ver
 
-
+#This function is used to get Contours.
 def getContours(Img):
     contours, hierarchy = cv2.findContours(Img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     for cnt in contours:
@@ -81,9 +81,9 @@ def getContours(Img):
                         (0, 0, 0), 2)
 
 
-path = "unknown_faces/shapes.png"
-img = cv2.imread(path)
-imgContour = img.copy()
+path = "Project/shapes.png"                              #location of the image.
+img = cv2.imread(path)                                   #To read image from the given location
+imgContour = img.copy()                                  #To clone a image
 
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 imgBlur = cv2.GaussianBlur(imgGray, (7, 7), 1)
@@ -91,7 +91,7 @@ imgCanny = cv2.Canny(imgBlur, 50, 50)
 getContours(imgCanny)
 
 imgBlank = np.zeros_like(img)
-imgStack = stackImages(0.7, ([img, imgCanny, imgContour]))
+imgStack = stackImages(0.7, ([img, imgCanny, imgContour])) 
 
 cv2.imshow("Stack", imgStack)
 
