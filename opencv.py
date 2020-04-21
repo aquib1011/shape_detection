@@ -1,7 +1,7 @@
 import cv2 
 import numpy as np
 
-#This function is used to stack image in a single image.
+#This function is used to stack image in a single window.
 def stackImages(scale, imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])
